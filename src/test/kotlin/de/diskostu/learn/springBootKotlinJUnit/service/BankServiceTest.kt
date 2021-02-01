@@ -1,6 +1,7 @@
 package de.diskostu.learn.springBootKotlinJUnit.service
 
 import de.diskostu.learn.springBootKotlinJUnit.datasource.BankDataSource
+import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -38,5 +39,18 @@ internal class BankServiceTest {
 
         // then
         verify(exactly = 1) { dataSource.retrieveBank(accountNumber) }
+    }
+
+
+    @Test
+    fun `should call its data source to add a new bank`() {
+        // given
+        val bank = BankDto("new_bank_account", 1.0, 1)
+
+        // when
+        bankService.addBank(bank)
+
+        // then
+        verify(exactly = 1) { dataSource.addBank(bank) }
     }
 }
