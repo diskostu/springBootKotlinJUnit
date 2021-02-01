@@ -1,6 +1,7 @@
 package de.diskostu.learn.springBootKotlinJUnit.datasource.mock
 
 import de.diskostu.learn.springBootKotlinJUnit.datasource.BankDataSource
+import de.diskostu.learn.springBootKotlinJUnit.datasource.NoBankFoundException
 import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
 import org.springframework.stereotype.Repository
 
@@ -14,4 +15,9 @@ class MockBankDataSource : BankDataSource {
     )
 
     override fun retrieveBanks(): Collection<BankDto> = banks
+
+
+    override fun retrieveBank(accountNumber: String): BankDto {
+        return banks.firstOrNull { it.accountNumber == accountNumber } ?: throw NoBankFoundException(accountNumber)
+    }
 }

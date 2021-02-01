@@ -6,6 +6,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers
+import org.mockito.internal.matchers.Any
 
 /**
  * Independent of the Spring application context.
@@ -23,5 +25,18 @@ internal class BankServiceTest {
 
         // then
         verify(exactly = 1) { dataSource.retrieveBanks() }
+    }
+
+
+    @Test
+    fun `should call its data source to retrieve a bank with the correct account number`() {
+        // given
+        val accountNumber = "666"
+
+        // when
+        bankService.getBank(accountNumber)
+
+        // then
+        verify(exactly = 1) { dataSource.retrieveBank(accountNumber) }
     }
 }
