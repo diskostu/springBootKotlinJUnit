@@ -31,4 +31,16 @@ class MockBankDataSource : BankDataSource {
         banks.add(bank)
         return bank
     }
+
+    override fun updateBank(bankForUpdate: BankDto): BankDto {
+        val accountNumber = bankForUpdate.accountNumber
+
+        val existingBank = banks.firstOrNull { it.accountNumber == accountNumber }
+            ?: throw NoBankFoundException(accountNumber)
+
+        banks.remove(existingBank)
+        banks.add(bankForUpdate)
+
+        return bankForUpdate
+    }
 }

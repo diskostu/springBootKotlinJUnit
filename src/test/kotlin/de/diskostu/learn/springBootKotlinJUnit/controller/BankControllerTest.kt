@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
+import org.springframework.test.web.servlet.patch
 import org.springframework.test.web.servlet.post
 import javax.print.DocFlavor
 
@@ -119,7 +120,6 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                 content = objectMapper.writeValueAsString(existingBank)
             }
 
-
             // then
             performPost
                 .andDo { print() }
@@ -128,6 +128,43 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                     content {
                         contentType(DocFlavor.URL.TEXT_PLAIN_UTF_8.mimeType)
                     }
+                }
+        }
+    }
+
+    @Nested
+    @DisplayName("PATCH /api/banks")
+    @TestInstance(Lifecycle.PER_CLASS)
+    inner class UpdateBank {
+
+        @Test
+        fun `should update an existing bank`() {
+            // given
+            val accountNumber = "1234"
+            val updatedTrust = 11.0
+            val updatedTransactionFee = 3
+            val bankForUpdate = BankDto(accountNumber, updatedTrust, updatedTransactionFee)
+
+            // when
+            val performPatch = mockMvc.patch(baseUrl) {
+                contentType = MediaType.APPLICATION_JSON
+                content = objectMapper.writeValueAsString(bankForUpdate)
+            }
+
+            // then
+            performPatch
+                .andDo { print() }
+                .andExpect {
+                    status { isOk() }
+                }
+
+            mockMvc.get("$baseUrl/${bankForUpdate.accountNumber}")
+                .andDo { print() }
+                .andExpect {
+                    status { isOk() }
+                    content { contentType(MediaType.APPLICATION_JSON) }
+                    jsonPath("$.trust") { value(updatedTrust) }
+                    jsonPath("$.transactionFee") { value(updatedTransactionFee) }
                 }
         }
     }

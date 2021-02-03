@@ -42,4 +42,14 @@ class BankController(private val service: BankService) {
     fun addBank(@RequestBody bank: BankDto): BankDto {
         return service.addBank(bank)
     }
+
+
+    /**
+     * with the RequestBody annotation, Jackson extracts the JSON data from the request and maps it into a BankDto object.
+     */
+    @PatchMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun updateBank(@RequestBody bank: BankDto): BankDto {
+        return service.updateBank(bank)
+    }
 }
