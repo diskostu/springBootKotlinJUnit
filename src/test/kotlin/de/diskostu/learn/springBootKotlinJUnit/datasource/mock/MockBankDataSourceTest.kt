@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestInstance.*
 import java.lang.IllegalArgumentException
 import kotlin.test.assertFailsWith
 
@@ -16,7 +17,7 @@ internal class MockBankDataSourceTest {
 
     @Nested
     @DisplayName("getBanks")
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @TestInstance(Lifecycle.PER_CLASS)
     inner class GetBanks {
         @Test
         fun `should provide a collection of banks`() {
@@ -43,7 +44,7 @@ internal class MockBankDataSourceTest {
 
     @Nested
     @DisplayName("getBank")
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @TestInstance(Lifecycle.PER_CLASS)
     inner class GetBank {
         @Test
         fun `should return a single bank`() {
@@ -64,7 +65,7 @@ internal class MockBankDataSourceTest {
 
     @Nested
     @DisplayName("addBank")
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @TestInstance(Lifecycle.PER_CLASS)
     inner class AddBank {
         @Test
         fun `should add a new bank`() {
@@ -102,7 +103,7 @@ internal class MockBankDataSourceTest {
 
     @Nested
     @DisplayName("updateBank")
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @TestInstance(Lifecycle.PER_CLASS)
     inner class UpdateBanks {
         @Test
         fun `should update an existing bank`() {
@@ -134,12 +135,49 @@ internal class MockBankDataSourceTest {
         @Test
         fun `should throw an exception when a non-existing bank should be updated`() {
             // given
-            val accountNumber = "not_existing_account"
+            val accountNumber = "non_existing_account"
             val bankForUpdate = BankDto(accountNumber, 1.0, 1)
 
             // when
             val exception = assertFailsWith<NoBankFoundException> {
                 mockDataSource.updateBank(bankForUpdate)
+            }
+            assertThat(exception.message).contains(accountNumber)
+        }
+    }
+
+
+    @Nested
+    @DisplayName("deleteBank")
+    @TestInstance(Lifecycle.PER_CLASS)
+    inner class DeleteBanks {
+
+        @Test
+        fun `should delete an existing bank`() {
+            // given
+            val accountNumber = "1234"
+
+            // when
+            mockDataSource.deleteBank(accountNumber)
+
+            // then
+            try {
+                mockDataSource.retrieveBank(accountNumber)
+                fail("We expect that no bank is found.")
+            } catch (ex: NoBankFoundException) {
+                // OK
+            }
+        }
+
+
+        @Test
+        fun `should throw an exception when a non-existing bank should be deleted`() {
+            // given
+            val accountNumber = "non_existing_account"
+
+            // when
+            val exception = assertFailsWith<NoBankFoundException> {
+                mockDataSource.deleteBank(accountNumber)
             }
             assertThat(exception.message).contains(accountNumber)
         }

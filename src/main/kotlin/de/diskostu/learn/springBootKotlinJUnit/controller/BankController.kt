@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class BankController(private val service: BankService) {
 
     @ExceptionHandler(NoBankFoundException::class)
-    fun handleBadRequest(ex: NoBankFoundException): ResponseEntity<String> {
+    fun handleNotFound(ex: NoBankFoundException): ResponseEntity<String> {
         return ResponseEntity(ex.message, HttpStatus.NOT_FOUND)
     }
 
@@ -44,12 +44,16 @@ class BankController(private val service: BankService) {
     }
 
 
-    /**
-     * with the RequestBody annotation, Jackson extracts the JSON data from the request and maps it into a BankDto object.
-     */
     @PatchMapping
     @ResponseStatus(HttpStatus.OK)
     fun updateBank(@RequestBody bank: BankDto): BankDto {
         return service.updateBank(bank)
+    }
+
+
+    @DeleteMapping("/{accountNumber}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteBank(@PathVariable accountNumber: String) {
+        service.deleteBank(accountNumber)
     }
 }

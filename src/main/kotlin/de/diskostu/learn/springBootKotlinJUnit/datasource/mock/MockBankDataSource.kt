@@ -34,13 +34,17 @@ class MockBankDataSource : BankDataSource {
 
     override fun updateBank(bankForUpdate: BankDto): BankDto {
         val accountNumber = bankForUpdate.accountNumber
+        deleteBank(accountNumber)
 
+        banks.add(bankForUpdate)
+
+        return bankForUpdate
+    }
+
+    override fun deleteBank(accountNumber: String) {
         val existingBank = banks.firstOrNull { it.accountNumber == accountNumber }
             ?: throw NoBankFoundException(accountNumber)
 
         banks.remove(existingBank)
-        banks.add(bankForUpdate)
-
-        return bankForUpdate
     }
 }

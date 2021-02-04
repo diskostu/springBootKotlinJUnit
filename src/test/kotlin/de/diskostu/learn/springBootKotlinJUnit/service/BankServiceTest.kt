@@ -66,4 +66,17 @@ internal class BankServiceTest {
         // then
         verify(exactly = 1) { dataSource.updateBank(bank) }
     }
+
+
+    @Test
+    fun `should call its data source to delete a bank`() {
+        // given
+        val accountNumber = "1234"
+
+        // when
+        bankService.deleteBank(accountNumber)
+
+        // then
+        verify(exactly = 1) { dataSource.deleteBank(accountNumber) }
+    }
 }
