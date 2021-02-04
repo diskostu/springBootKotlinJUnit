@@ -6,6 +6,31 @@
 	},
 	"item": [
 		{
+			"name": "demo",
+			"item": [
+				{
+					"name": "hello",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "getBanks",
 			"item": [
 				{
@@ -148,23 +173,126 @@
 			]
 		},
 		{
-			"name": "demo",
+			"name": "patchBank",
 			"item": [
 				{
-					"name": "hello",
+					"name": "PATCH existing bank",
 					"request": {
-						"method": "GET",
+						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNumber\": \"1234\",\r\n    \"trust\": 1.0,\r\n    \"transactionFee\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/api/hello",
+							"raw": "http://localhost:9000/api/banks",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "9000",
 							"path": [
 								"api",
-								"hello"
+								"banks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH non-existing bank",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNumber\": \"non_existing_account\",\r\n    \"trust\": 1.0,\r\n    \"transactionFee\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/banks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"banks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "deleteBank",
+			"item": [
+				{
+					"name": "DELETE existing bank",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/banks/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"banks",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE non-existing bank",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/banks/non_existing_account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"banks",
+								"non_existing_account"
 							]
 						}
 					},
