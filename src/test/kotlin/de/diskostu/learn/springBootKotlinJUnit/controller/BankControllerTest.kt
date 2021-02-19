@@ -11,16 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.web.servlet.*
 import javax.print.DocFlavor
 
 /**
  * Integration test, starts up the whole application (and with it the Spring context)
+ *
+ * We have to use DirtiesContext here, because we have some operations where we modify the data. After that,
+ * the current context should be removed from the context cache and subsequent tests should get a new context.
+ * This makes the tests independent from each other.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext
 internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, val objectMapper: ObjectMapper) {
-
     private val baseUrl = "/api/banks"
 
     @Nested
@@ -39,7 +44,6 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                 }
         }
     }
-
 
     @Nested
     @DisplayName("GET /api/banks/{accountNumber}")
@@ -71,14 +75,13 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                 .andDo { print() }
                 .andExpect { status { isNotFound() } }
         }
-    }
 
+    }
 
     @Nested
     @DisplayName("POST /api/banks")
     @TestInstance(Lifecycle.PER_CLASS)
     inner class PostNewBank {
-
         @Test
         fun `should add the new bank`() {
             // given
@@ -127,13 +130,13 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                     }
                 }
         }
+
     }
 
     @Nested
     @DisplayName("PATCH /api/banks")
     @TestInstance(Lifecycle.PER_CLASS)
     inner class UpdateBank {
-
         @Test
         fun `should update an existing bank`() {
             // given
@@ -165,7 +168,6 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                 }
         }
     }
-
 
     @Nested
     @DisplayName("DELETE /api/banks")
