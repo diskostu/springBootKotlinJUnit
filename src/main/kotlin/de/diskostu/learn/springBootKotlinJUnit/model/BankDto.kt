@@ -1,3 +1,12 @@
 package de.diskostu.learn.springBootKotlinJUnit.model
 
-data class BankDto(val accountNumber: String, val trust: Double, val transactionFee: Int)
+import com.fasterxml.jackson.annotation.JsonProperty
+
+data class BankDto(
+        @JsonProperty("account_number")
+        val accountNumber: String,
+        @JsonProperty("trust")
+        val trust: Double,
+        @JsonProperty("default_transaction_fee")
+        val transactionFee: Int,
+)

@@ -6,7 +6,7 @@ import de.diskostu.learn.springBootKotlinJUnit.datasource.NoBankFoundException
 import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
 import org.springframework.stereotype.Repository
 
-@Repository
+@Repository("mock")
 class MockBankDataSource : BankDataSource {
 
     val banks = mutableListOf(
