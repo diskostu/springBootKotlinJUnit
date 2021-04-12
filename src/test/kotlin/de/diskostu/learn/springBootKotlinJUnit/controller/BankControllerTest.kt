@@ -40,7 +40,7 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                 .andExpect {
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
-                    jsonPath("$[0].accountNumber") { value("1234") }
+                    jsonPath("$[0].account_number") { value("1234") }
                 }
         }
     }
@@ -61,7 +61,7 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
                     jsonPath("$.trust") { value("3.0") }
-                    jsonPath("$.transactionFee") { value("10") }
+                    jsonPath("$.default_transaction_fee") { value("10") }
                 }
         }
 
@@ -102,9 +102,9 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                 .andExpect {
                     status { isCreated() }
                     content { contentType(MediaType.APPLICATION_JSON) }
-                    jsonPath("$.accountNumber") { value(accountNumber) }
+                    jsonPath("$.account_number") { value(accountNumber) }
                     jsonPath("$.trust") { value(trust) }
-                    jsonPath("$.transactionFee") { value(transactionFee) }
+                    jsonPath("$.default_transaction_fee") { value(transactionFee) }
                 }
         }
 
@@ -164,7 +164,7 @@ internal class BankControllerTest @Autowired constructor(val mockMvc: MockMvc, v
                     status { isOk() }
                     content { contentType(MediaType.APPLICATION_JSON) }
                     jsonPath("$.trust") { value(updatedTrust) }
-                    jsonPath("$.transactionFee") { value(updatedTransactionFee) }
+                    jsonPath("$.default_transaction_fee") { value(updatedTransactionFee) }
                 }
         }
     }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 
 @Service
-class BankService(@Qualifier("network") private val dataSource: BankDataSource) {
+class BankService(@Qualifier("mock") private val dataSource: BankDataSource) {
     fun getBanks() = dataSource.retrieveBanks()
     fun getBank(accountNumber: String) = dataSource.retrieveBank(accountNumber)
     fun addBank(bank: BankDto) = dataSource.addBank(bank)
