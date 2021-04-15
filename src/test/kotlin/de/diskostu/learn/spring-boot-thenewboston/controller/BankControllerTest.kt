@@ -1,7 +1,7 @@
-package de.diskostu.learn.springBootKotlinJUnit.controller
+package de.diskostu.learn.`spring-boot-thenewboston`.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
+import de.diskostu.learn.`spring-boot-thenewboston`.model.BankDto
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

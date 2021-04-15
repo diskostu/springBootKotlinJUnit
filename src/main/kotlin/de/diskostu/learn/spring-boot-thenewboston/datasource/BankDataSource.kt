@@ -1,6 +1,6 @@
-package de.diskostu.learn.springBootKotlinJUnit.datasource
+package de.diskostu.learn.`spring-boot-thenewboston`.datasource
 
-import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
+import de.diskostu.learn.`spring-boot-thenewboston`.model.BankDto
 
 interface BankDataSource {
 

@@ -1,9 +1,9 @@
-package de.diskostu.learn.springBootKotlinJUnit.controller
+package de.diskostu.learn.`spring-boot-thenewboston`.controller
 
-import de.diskostu.learn.springBootKotlinJUnit.datasource.BankAlreadyExistsException
-import de.diskostu.learn.springBootKotlinJUnit.datasource.NoBankFoundException
-import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
-import de.diskostu.learn.springBootKotlinJUnit.service.BankService
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.BankAlreadyExistsException
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.NoBankFoundException
+import de.diskostu.learn.`spring-boot-thenewboston`.model.BankDto
+import de.diskostu.learn.`spring-boot-thenewboston`.service.BankService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

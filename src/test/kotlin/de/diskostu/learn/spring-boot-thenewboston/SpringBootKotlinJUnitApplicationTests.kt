@@ -1,4 +1,4 @@
-package de.diskostu.learn.springBootKotlinJUnit
+package de.diskostu.learn.`spring-boot-thenewboston`
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

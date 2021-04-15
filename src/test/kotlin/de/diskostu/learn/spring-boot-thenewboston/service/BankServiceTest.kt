@@ -1,14 +1,10 @@
-package de.diskostu.learn.springBootKotlinJUnit.service
+package de.diskostu.learn.`spring-boot-thenewboston`.service
 
-import de.diskostu.learn.springBootKotlinJUnit.datasource.BankDataSource
-import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
-import io.mockk.every
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.BankDataSource
+import de.diskostu.learn.`spring-boot-thenewboston`.model.BankDto
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers
-import org.mockito.internal.matchers.Any
 
 /**
  * Independent of the Spring application context.

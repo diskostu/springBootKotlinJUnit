@@ -1,8 +1,7 @@
-package de.diskostu.learn.springBootKotlinJUnit.service
+package de.diskostu.learn.`spring-boot-thenewboston`.service
 
-import de.diskostu.learn.springBootKotlinJUnit.datasource.BankDataSource
-import de.diskostu.learn.springBootKotlinJUnit.datasource.mock.MockBankDataSource
-import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.BankDataSource
+import de.diskostu.learn.`spring-boot-thenewboston`.model.BankDto
 import org.springframework.stereotype.Service
 
 @Service

@@ -1,1 +1,1 @@
-rootProject.name = "springBootKotlinJUnit"
+rootProject.name = "spring-boot-thenewboston"

@@ -1,9 +1,9 @@
-package de.diskostu.learn.springBootKotlinJUnit.datasource.mock
+package de.diskostu.learn.`spring-boot-thenewboston`.datasource.mock
 
-import de.diskostu.learn.springBootKotlinJUnit.datasource.BankAlreadyExistsException
-import de.diskostu.learn.springBootKotlinJUnit.datasource.BankDataSource
-import de.diskostu.learn.springBootKotlinJUnit.datasource.NoBankFoundException
-import de.diskostu.learn.springBootKotlinJUnit.model.BankDto
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.BankAlreadyExistsException
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.BankDataSource
+import de.diskostu.learn.`spring-boot-thenewboston`.datasource.NoBankFoundException
+import de.diskostu.learn.`spring-boot-thenewboston`.model.BankDto
 import org.springframework.stereotype.Repository
 
 @Repository

@@ -1,4 +1,4 @@
-package de.diskostu.learn.springBootKotlinJUnit
+package de.diskostu.learn.`spring-boot-thenewboston`
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

@@ -1,4 +1,4 @@
-package de.diskostu.learn.springBootKotlinJUnit.datasource
+package de.diskostu.learn.`spring-boot-thenewboston`.datasource
 
 
 class NoBankFoundException(accountNumber: String) :
